@@ -29,10 +29,19 @@ outputs:
   version:
     description: 'The current version (whether updated or not)'
     value: ${{ steps.get-outputs.outputs.version }}
+  old-version:
+    description: 'The old version'
+    value: ${{ steps.get-outputs.outputs.version }}
 
 runs:
   using: "composite"
   steps:
+    - name: Set old outputs
+      id: get-old-outputs
+      shell: bash
+      env:
+        POMPATH: ${{ inputs.pom-path }}
+      run: echo "::set-output name=old-version::$(${{github.action_path}}/get-version.sh)"
     - name: Bump Version
       env:
         TOKEN: ${{ inputs.github-token }}
