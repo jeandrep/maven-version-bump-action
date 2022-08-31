@@ -31,7 +31,7 @@ outputs:
     value: ${{ steps.get-outputs.outputs.version }}
   old-version:
     description: 'The old version'
-    value: ${{ steps.get-outputs.outputs.version }}
+    value: ${{ steps.get-old-outputs.outputs.version }}
 
 runs:
   using: "composite"
