@@ -41,7 +41,7 @@ runs:
       shell: bash
       env:
         POMPATH: ${{ inputs.pom-path }}
-      run: echo "old_version=$($(${{github.action_path}}/get-version.sh)" >> $GITHUB_OUTPUT
+      run: echo "old_version=$(${{github.action_path}}/get-version.sh)" >> $GITHUB_OUTPUT
 
     - name: Bump Version
       env:
@@ -57,7 +57,7 @@ runs:
       shell: bash
       env:
         POMPATH: ${{ inputs.pom-path }}
-      run: echo "version=$($(${{github.action_path}}/get-version.sh)" >> $GITHUB_OUTPUT
+      run: echo "version=$(${{github.action_path}}/get-version.sh)" >> $GITHUB_OUTPUT
 
     - name: Result
       shell: bash
