@@ -28,20 +28,21 @@ inputs:
 outputs:
   version:
     description: 'The current version (whether updated or not)'
-    value: ${{ steps.get-outputs.outputs.version }}
+    value: ${{ steps.get_outputs.outputs.version }}
   old-version:
     description: 'The old version'
-    value: ${{ steps.get-old-outputs.outputs.version }}
+    value: ${{ steps.get_old_outputs.outputs.old_version }}
 
 runs:
   using: "composite"
   steps:
     - name: Set old outputs
-      id: get-old-outputs
+      id: get_old_outputs
       shell: bash
       env:
         POMPATH: ${{ inputs.pom-path }}
-      run: echo "::set-output name=old-version::$(${{github.action_path}}/get-version.sh)"
+      run: echo "old_version=$($(${{github.action_path}}/get-version.sh)" >> $GITHUB_OUTPUT
+
     - name: Bump Version
       env:
         TOKEN: ${{ inputs.github-token }}
@@ -50,13 +51,15 @@ runs:
         POMPATH: ${{ inputs.pom-path }}
       run: ${{github.action_path}}/version-bump.sh
       shell: bash
+
     - name: Set outputs
-      id: get-outputs
+      id: get_outputs
       shell: bash
       env:
         POMPATH: ${{ inputs.pom-path }}
-      run: echo "::set-output name=version::$(${{github.action_path}}/get-version.sh)"
+      run: echo "version=$($(${{github.action_path}}/get-version.sh)" >> $GITHUB_OUTPUT
+
     - name: Result
       shell: bash
-      run: "echo 'Version is now ${{ steps.get-outputs.outputs.version }}'"
+      run: "echo 'Version is now ${{ steps.get_outputs.outputs.version }}'"
 
