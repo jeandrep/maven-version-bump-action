@@ -24,6 +24,14 @@ inputs:
     description: 'The name to use for the version bump commit. e.g. github.actor'
     required: true
     default: github-actions[bot]
+  git-actor:
+    description: 'The Github Actor.'
+    required: true
+    default: github-actions[bot]
+  git-server:
+    description: 'The Github Server.'
+    required: true
+    default: github.com
 
 outputs:
   version:
