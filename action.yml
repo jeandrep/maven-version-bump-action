@@ -54,8 +54,8 @@ runs:
     - name: Bump Version
       env:
         TOKEN: ${{ inputs.github-token }}
-        GITHUB_ACTOR: ${{ inputs.github-actor }}
-        GITHUB_SERVER: ${{ inputs.github-server }} 
+        GITHUB_ACTOR: ${{ inputs.git-actor }}
+        GITHUB_SERVER: ${{ inputs.git-server }} 
         EMAIL: ${{ inputs.git-email }}
         NAME: ${{ inputs.git-username }}
         POMPATH: ${{ inputs.pom-path }}
